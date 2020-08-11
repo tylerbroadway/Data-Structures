@@ -2,16 +2,33 @@
 Each ListNode holds a reference to its previous node
 as well as its next node in the List.
 """
+
 class ListNode:
     def __init__(self, value, prev=None, next=None):
         self.prev = prev
         self.value = value
         self.next = next
-            
+
+    def get_value(self):
+        return self.value
+
+    def get_next(self):
+        return self.next
+    
+    def get_prev(self):
+        return self.prev
+
+    def delete(self):
+        if self.prev:
+            self.prev.next = self.next
+        if self.next:
+            self.next.prev = self.prev
+    
 """
 Our doubly-linked list class. It holds references to 
 the list's head and tail nodes.
 """
+
 class DoublyLinkedList:
     def __init__(self, node=None):
         self.head = node
