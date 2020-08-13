@@ -9,6 +9,7 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -17,20 +18,56 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        new_node = BSTNode(value)
+        node = self
+        def traverse(node, new_node):
+            if node.left == None and new_node.value < node.value:
+                node.left = new_node
+                return
+            if new_node.value < node.value:
+                traverse(node.left, new_node)
+            if node.right == None and new_node.value >= node.value:
+                node.right = new_node
+                return
+            if new_node.value >= node.value:
+                traverse(node.right, new_node)
+        traverse(node, new_node)
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        node = self
+        def search(node, target):
+            if node == None:
+                return False
+            if node.value == target:
+                return True
+            elif target < node.value:
+                return search(node.left, target)
+            else:
+                return search(node.right, target)
+        return serach(node, target)
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        node = self
+        def right_traverse(node):
+            if node.right == None:
+                return node.value
+            return right_traverse(node.right)
+        return right_traverse(node)
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        node = self
+        self.fn = fn
+        def traverse(node):
+            if node == None:
+                return
+            self.fn(node.value)
+            traverse(node.left)
+            traverse(node.right)
+        traverse(node)
 
     # Part 2 -----------------------
 

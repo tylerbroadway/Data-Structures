@@ -127,7 +127,7 @@ class DoublyLinkedList:
     """
     def move_to_end(self, node):
         if self.head:
-          if node == self.tail:
+          if node is self.tail:
             return
           self.length -= 1
           if self.length == 2 and node == self.head:
